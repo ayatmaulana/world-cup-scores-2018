@@ -1,0 +1,9 @@
+export const BLACK = "#23242A";
+export const PRIMARY = "#FFFFFF";
+export const ACCENT = "#E91B45";
+export const GREY_1 = "#CBCBCB";
+export const GREY_2 = "#838383";
+export const BLUE =  "#0093EE";
+export const YELLOW = "#FFBA00";
+export const GREEN = "2FCC71";
+export const RED = "#DF0531";

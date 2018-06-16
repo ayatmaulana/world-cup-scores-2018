@@ -1,0 +1,34 @@
+{
+  "name": "WorldCupLiveScore2018",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@types/react-native-vector-icons": "^4.6.1",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-flags": "^1.0.0",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^2.3.1",
+    "react-navigation-material-bottom-tabs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.0",
+    "@types/react": "^16.3.18",
+    "@types/react-native": "^0.55.20",
+    "@types/react-navigation": "^2.0.5",
+    "@types/react-test-renderer": "^16.0.1",
+    "babel-jest": "23.0.1",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "23.1.0",
+    "react-native-typescript-transformer": "^1.2.10",
+    "react-test-renderer": "16.3.1",
+    "typescript": "^2.9.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
