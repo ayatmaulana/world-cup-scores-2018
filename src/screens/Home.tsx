@@ -14,7 +14,12 @@ export default class Home extends React.Component {
 
   _onPress(){
     // console.log(this.props)
-    this.props.navigation.navigate("Detail")
+    this.props.navigation.navigate("Detail", {
+      team: [
+        {name: "Indonesia", code: "ID"},
+        {name: "Jerman", code: "DE"}
+      ]
+    })
     // Alert.alert("navigatopm")
   }
 
@@ -38,49 +43,6 @@ export default class Home extends React.Component {
                           group="Group A"
                           onPress={this._onPress.bind(this)}
                         />
-
-                            <HomeItem 
-                          team={[
-                            {name: "Indonesia", code: "ID"},
-                            {name: "Jerman", code: "DE"}
-                          ]}
-                          schedule="Jun 14 2018 - 18:00"
-                          group="Group A"
-                          onPress={this._onPress.bind(this)}
-                        />
-
-                            <HomeItem 
-                          team={[
-                            {name: "Indonesia", code: "ID"},
-                            {name: "Jerman", code: "DE"}
-                          ]}
-                          schedule="Jun 14 2018 - 18:00"
-                          group="Group A"
-                          onPress={this._onPress.bind(this)}
-                        />
-
-                            <HomeItem 
-                          team={[
-                            {name: "Indonesia", code: "ID"},
-                            {name: "Jerman", code: "DE"}
-                          ]}
-                          schedule="Jun 14 2018 - 18:00"
-                          group="Group A"
-                          onPress={this._onPress.bind(this)}
-                        />
-
-                            <HomeItem 
-                          team={[
-                            {name: "Indonesia", code: "ID"},
-                            {name: "Jerman", code: "DE"}
-                          ]}
-                          schedule="Jun 14 2018 - 18:00"
-                          group="Group A"
-                          onPress={this._onPress.bind(this)}
-                        />
-    
-             
-              
                 </ScrollView>
         </View>
       </View>
