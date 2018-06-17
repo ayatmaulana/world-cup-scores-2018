@@ -9,7 +9,7 @@ export interface Props {
                 any, any
         ]
         schedule: string
-        group: string,
+        group: string
         onPress: any
 }
 

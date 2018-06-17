@@ -4,6 +4,8 @@ import * as COLOR from  '../styles/colors';
 import * as DIMEN from  '../styles/dimens';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Flag from 'react-native-flags'
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 
 export default class Stats extends React.Component<{}> {
@@ -11,11 +13,32 @@ export default class Stats extends React.Component<{}> {
     tabBarIcon: ({tintColor}) => (<Icon name="bar-chart" size={28} color={tintColor} />)
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableHead: ['Pos','', 'Team', 'P', 'W', 'D', 'L', 'Goals', 'PTS'],
+      tableData: [
+        ['1', <Flag code="DE" type="flat" size={24} />, 'Jerman', '3', '4', '0', '1', '3 : 0', '4'],
+        ['1', <Flag code="ID" type="flat" size={24} />, 'Indonesia', '3', '4', '0', '1', '3 : 0', '4'],
+        ['1', <Flag code="MY" type="flat" size={24} />, 'Malasya', '3', '4', '0', '1', '3 : 1', '4'],
+        ['1', <Flag code="AU" type="flat" size={24} />, 'Australia', '3', '4', '0', '1', '3 : 3', '4'],
+        
+      ]
+    }
+  }
+
+
   render() {
+    const state = this.state;
     return (
       <View style={styles.container}>
-        <Text> Hello Stats </Text>
-      </View>
+      <Table borderStyle={{borderWidth: 0,}} style={{marginTop: 20, marginLeft: 5, marginRight: 5}}>
+        <Row flexArr={[1,1,5,1,1,1,1,2,1]} data={state.tableHead} style={{  height: 30  }} textStyle={{ textAlign: 'center', fontSize: 12, fontWeight: 'bold', }}/>
+        <TableWrapper style={{flexDirection: 'row',}}>
+          <Rows flexArr={[1,1,5,1,1,1,1,2,1]} data={state.tableData} style={{  height: 30, alignItems: 'center'  }} textStyle={{ textAlign: 'center', fontSize: 12 }} />
+        </TableWrapper>
+      </Table>
+    </View>
     );
   }
 }

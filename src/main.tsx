@@ -17,8 +17,7 @@ const StackNavigator = createStackNavigator({
 export default class Main extends React.Component<{}> {
   render() {
     return (
-      <StackNavigator />
-      // <Home />
+        <StackNavigator /> 
     );
   }
 }
