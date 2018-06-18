@@ -31,7 +31,7 @@ export default class Overview extends React.Component<State> {
   }
 
   componentDidMount(){
-    setTimeout(() => this.setState({isLoading: false}), 3000)
+    setTimeout(() => this.setState({isLoading: false}), 1000)
   }
 
   content() {
@@ -45,7 +45,7 @@ export default class Overview extends React.Component<State> {
             <View style={{flex:1, flexDirection: 'row', justifyContent: "flex-start"}}>
               <IconEntypo name="calendar" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 20}} />
               <View>
-                  <Text style={{fontSize: 12, fontWeight: 'bold'}}>Jun 16, 2018 - 06:30 AM</Text>
+                  <Text style={{fontSize: 12, fontWeight: 'bold'}}> { this.props.navigation.getParam("schedule") } </Text>
                   <Text style={{fontSize: 12}}>Start Date</Text>
               </View>
             </View>

@@ -32,7 +32,10 @@ export default class Stats extends React.Component<{}> {
     const state = this.state;
     return (
       <View style={styles.container}>
-      <Table borderStyle={{borderWidth: 0,}} style={{marginTop: 20, marginLeft: 5, marginRight: 5}}>
+      <View style={{marginTop: 5, marginBottom: 20, width: '30%', backgroundColor: COLOR.BLACK, padding: 5, borderTopRightRadius: 30, borderBottomRightRadius: 30, alignItems: 'center'}}>
+        <Text style={{color: COLOR.PRIMARY, fontWeight: 'bold'}}>Group Info</Text>
+      </View>
+      <Table borderStyle={{borderWidth: 0,}} style={{ marginLeft: 5, marginRight: 5}}>
         <Row flexArr={[1,1,5,1,1,1,1,2,1]} data={state.tableHead} style={{  height: 30  }} textStyle={{ textAlign: 'center', fontSize: 12, fontWeight: 'bold', }}/>
         <TableWrapper style={{flexDirection: 'row',}}>
           <Rows flexArr={[1,1,5,1,1,1,1,2,1]} data={state.tableData} style={{  height: 30, alignItems: 'center'  }} textStyle={{ textAlign: 'center', fontSize: 12 }} />

@@ -25,13 +25,13 @@ export default class HomeItem extends React.Component<Props> {
                 <View style={styles.itemWrapper}>
                         <Text style={{marginTop: 5}}> {this.props.schedule} </Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
-                                <View style={{flex:1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                                        <Text style={{color: COLOR.BLACK}} > {this.props.team[0].name} </Text>
-                                        <Flag size={32} code={this.props.team[0].code} type="flat" />
+                                <View style={{flex:1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <Text style={{color: COLOR.BLACK, marginLeft: 20, flexWrap: 'wrap', alignSelf: 'center'}} > {this.props.team[0].name} </Text>
+                                        <Flag size={32} code={this.props.team[0].code} type="shiny" style={{marginRight: 20}} />
                                 </View>
-                                <View style={{flex:1, flexDirection: 'row',  alignItems: 'center', justifyContent: 'space-around'  }}>
-                                        <Flag size={32} code={this.props.team[1].code} type="flat" />
-                                        <Text style={{color: COLOR.BLACK}}> {this.props.team[1].name} </Text>
+                                <View style={{flex:1, flexDirection: 'row',  alignItems: 'center', justifyContent: 'space-between'  }}>
+                                        <Flag size={32} code={this.props.team[1].code} type="shiny" style={{marginLeft: 20}} />
+                                        <Text style={{color: COLOR.BLACK, marginRight: 20, flexWrap: 'wrap'}}> {this.props.team[1].name} </Text>
                                 </View>
                         </View>
                         <Text style={{marginBottom: 5}}> { this.props.group } </Text>
@@ -52,6 +52,10 @@ const styles: any = StyleSheet.create({
                 // padding: 50,
                 borderColor: COLOR.GREY_1,
                 borderWidth: 0.3,
+                shadowOpacity: 0.75,
+                shadowRadius: 5,
+                shadowColor: 'red',
+                shadowOffset: { height: 0, width: 0 },
         }
 });
 

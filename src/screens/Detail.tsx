@@ -7,13 +7,6 @@ import DetailRoute from '../routes/DetailRoute'
 import Flag from 'react-native-flags'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// export interface Props {
-//   team: [
-//           any, any
-//   ]
-//   schedule?: string
-//   group?: string,
-// }
 
 export default class Detail extends React.Component<> {
   constructor(props){
@@ -21,7 +14,10 @@ export default class Detail extends React.Component<> {
   }
 
   render() {
-    const team = this.props.navigation.getParam("team")
+    const team = this.props.navigation.getParam("team"),
+          group = this.props.navigation.getParam("group"),
+          schedule = this.props.navigation.getParam("schedule");
+
 
     return (
       <View style={{flex:1, flexDirection: 'column'}}>
@@ -37,7 +33,7 @@ export default class Detail extends React.Component<> {
             alignItems: 'center'
           }} >
 
-              <Text style={{color: 'white', marginTop: 10, fontWeight: "bold", fontSize: 20}}> Group D </Text>
+              <Text style={{color: 'white', marginTop: 10, fontWeight: "bold", fontSize: 20}}> { group } </Text>
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', paddingLeft: 25, paddingRight: 25}}>
 
                   <Flag size={48} code={team[0].code} type="flat" />
@@ -70,7 +66,7 @@ export default class Detail extends React.Component<> {
             marginTop: 125 - 40 /2
             
           }}>
-            <Text style={{color: COLOR.BLACK, fontSize: 15}}> Indonesia - Malaysa</Text>
+            <Text style={{color: COLOR.BLACK, fontSize: 15}}> { team[0].name } - {team[1].name} </Text>
 
           
           </View>

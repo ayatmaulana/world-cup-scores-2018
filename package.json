@@ -7,7 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/node": "^10.3.3",
     "@types/react-native-vector-icons": "^4.6.1",
+    "axios": "^0.18.0",
+    "collect.js": "^4.0.19",
+    "countrynames": "^0.1.1",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-flags": "^1.0.0",
@@ -19,6 +25,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.1.0",
+    "@types/lodash": "^4.14.109",
     "@types/react": "^16.3.18",
     "@types/react-native": "^0.55.20",
     "@types/react-navigation": "^2.0.5",

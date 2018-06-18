@@ -1,54 +1,90 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Alert, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Alert, ScrollView, StatusBar, ListView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import * as COLOR from  '../styles/colors';
 import * as DIMEN from  '../styles/dimens';
+import Axios from 'axios'
 
-import { createDrawerNavigator } from 'react-navigation'
+import * as Country from '../lib/country.js'
+import Moment from 'moment'
+
+import _ from 'lodash'
 
 import HomeItem from '../components/HomeItem'
 import Spiner from '../components/Spiner'
 
 interface State {
-  isLoading: boolean
+  isLoading: boolean,
+  data?: any
 }
+
+const DS: any = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
 
 export default class Home extends React.Component<State> {
 
   constructor(props){
     super(props)
     this.state = {
-      isLoading: true
+      isLoading: true,
+      data: [],
+      fromNetwork: []
     }
   }
 
-  componentDidMount(){
-    setTimeout(() => this.setState({isLoading: false}), 3000)
+  async componentWillMount(){
+    // setTimeout(() => ), 3000)
+
+    try{
+      const getData: any = await Axios("https://fifa-2018-apis.herokuapp.com/fifa/fixtures")
+      const countries: any = getData.data.data.group_stages
+      for (let i in countries){
+        this.setState({fromNetwork: [...this.state.fromNetwork, ...countries[i]]})
+      }
+
+      const newData = _.sortBy([ ...this.state.fromNetwork], 'datetime').map(item => {
+
+        if(item.home_team == "England")
+          item.home_team = "United Kingdom"
+
+        if(item.away_team == "England")
+          item.away_team = "United Kingdom"
+
+        return {
+            team: [
+              {name: item.home_team, code: Country.getCode(item.home_team)},
+              {name: item.away_team, code: Country.getCode(item.away_team)}
+            ],
+            schedule: Moment(item.datetime).format("MMM D, YYYY - hh:mm A"),
+            group: item.group
+        }
+      })
+
+      this.setState({isLoading: false, data: DS.cloneWithRows(newData)})
+    } catch(e) {
+      throw new Error(e)
+    }
+
   }
 
-  _onPress(){
-    // console.log(this.props)
-    this.props.navigation.navigate("Detail", {
-      team: [
-        {name: "Indonesia", code: "ID"},
-        {name: "Jerman", code: "DE"}
-      ]
-    })
-    // Alert.alert("navigatopm")
-  }
+  _onPress = (params: any) => this.props.navigation.navigate("Detail", params)
 
   showContent(){
     return this.state.isLoading ? ( <Spiner show={true} /> ) : (
-        <HomeItem 
-        team={[
-          {name: "Indonesia", code: "ID"},
-          {name: "Jerman", code: "DE"}
-        ]}
-        schedule="Jun 14 2018 - 18:00"
-        group="Group A"
-        onPress={this._onPress.bind(this)}
+      <ListView
+        dataSource={this.state.data}
+        renderRow={(rowData) => {
+          return (
+            <HomeItem 
+              team={rowData.team}
+              schedule={rowData.schedule}
+              group={rowData.group}
+              onPress={this._onPress.bind(this, rowData)}
+            />
+          )
+        }}
       />
+
     )  
   }
   
@@ -68,7 +104,7 @@ export default class Home extends React.Component<State> {
                 <Text style={styles.headerTitleSecond}> FIFA 2018 </Text>
         </View>
 
-        <View style={{flex: 2, padding: 30}}>
+        <View style={{flex: 2, padding: 20}}>
                 <ScrollView showsVerticalScrollIndicator={false} >
                   { this.showContent() }
                 </ScrollView>
