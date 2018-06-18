@@ -3,7 +3,8 @@ import Home from './screens/Home'
 import Detail from './screens/Detail'
 import Info from './screens/Info'
 
-import { createStackNavigator } from 'react-navigation';
+import { View, Text, TouchableHighlight, ScrollView, StyleSheet } from 'react-native'
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 const StackNavigator = createStackNavigator({
   Home: {screen : Home},
@@ -18,6 +19,7 @@ export default class Main extends React.Component<{}> {
   render() {
     return (
         <StackNavigator /> 
+        // <DrawerNavigation />
     );
   }
 }

@@ -10,14 +10,31 @@ import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconEntypo from 'react-native-vector-icons/Entypo'
 
 import PenaltyCard from '../components/PenaltyCard'
+import Spiner from '../components/Spiner'
 
-export default class Overview extends React.Component<{}> {
+
+interface State {
+  isLoading: boolean
+}
+
+export default class Overview extends React.Component<State> {
   static navigationOptions = {
     tabBarIcon: ({tintColor}) => (<Icon name="list-ul" size={28} color={tintColor} />),
 
   }
 
-  render() {
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoading: true
+    }
+  }
+
+  componentDidMount(){
+    setTimeout(() => this.setState({isLoading: false}), 3000)
+  }
+
+  content() {
     return (
       <View style={styles.container}>
         <View style={{marginTop: 5, marginBottom: 20, width: '30%', backgroundColor: COLOR.BLACK, padding: 5, borderTopRightRadius: 30, borderBottomRightRadius: 30, alignItems: 'center'}}>
@@ -111,6 +128,10 @@ export default class Overview extends React.Component<{}> {
         </View>
       </View>
     );
+  }
+
+  render(){
+    return this.state.isLoading ? (< Spiner show={true} />) : this.content()
   }
 }
 
