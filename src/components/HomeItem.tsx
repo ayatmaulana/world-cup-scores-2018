@@ -23,7 +23,7 @@ export default class HomeItem extends React.Component<Props> {
         return (
                 <TouchableOpacity onPress={this.props.onPress} activeOpacity={1} >
                 <View style={styles.itemWrapper}>
-                        <Text style={{marginTop: 5}}> {this.props.schedule} </Text>
+                        <Text style={{marginTop: 5, fontFamily: "Comfortaa-Regular"}}> {this.props.schedule} </Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{flex:1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <Text style={{color: COLOR.BLACK, marginLeft: 20, flexWrap: 'wrap', alignSelf: 'center'}} > {this.props.team[0].name} </Text>
