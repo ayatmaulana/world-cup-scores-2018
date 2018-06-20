@@ -23,15 +23,17 @@ export default class HomeItem extends React.Component<Props> {
         return (
                 <TouchableOpacity onPress={this.props.onPress} activeOpacity={1} >
                 <View style={styles.itemWrapper}>
-                        <Text style={{marginTop: 5, fontFamily: "Comfortaa-Regular"}}> {this.props.schedule} </Text>
+                        <Text style={{marginTop: 5, fontFamily: "JosefinSans-Regular", fontSize: 15}}> {this.props.schedule} </Text>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{flex:1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <Text style={{color: COLOR.BLACK, marginLeft: 20, flexWrap: 'wrap', alignSelf: 'center'}} > {this.props.team[0].name} </Text>
+                                        <Text style={{color: COLOR.BLACK, marginLeft: 20, flexWrap: 'wrap', alignSelf: 'center', fontFamily: 'OpenSans-Bold'}} > {this.props.team[0].name} </Text>
                                         <Flag size={32} code={this.props.team[0].code} type="shiny" style={{marginRight: 20}} />
                                 </View>
                                 <View style={{flex:1, flexDirection: 'row',  alignItems: 'center', justifyContent: 'space-between'  }}>
                                         <Flag size={32} code={this.props.team[1].code} type="shiny" style={{marginLeft: 20}} />
-                                        <Text style={{color: COLOR.BLACK, marginRight: 20, flexWrap: 'wrap'}}> {this.props.team[1].name} </Text>
+                                        
+                                        <Text style={{alignSelf: 'auto', color: COLOR.BLACK, marginRight: 20, flexWrap: 'wrap', fontFamily: 'OpenSans-Bold'}}> {this.props.team[1].name} </Text>
+                                        
                                 </View>
                         </View>
                         <Text style={{marginBottom: 5}}> { this.props.group } </Text>

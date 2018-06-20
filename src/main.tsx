@@ -6,6 +6,8 @@ import Info from './screens/Info'
 import { View, Text, TouchableHighlight, ScrollView, StyleSheet } from 'react-native'
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
+import AppContext from './context'
+
 const StackNavigator = createStackNavigator({
   Home: {screen : Home},
   Detail: {screen: Detail},
@@ -18,7 +20,9 @@ const StackNavigator = createStackNavigator({
 export default class Main extends React.Component<{}> {
   render() {
     return (
-        <StackNavigator /> 
+        <AppContext>
+          <StackNavigator /> 
+        </AppContext>
         // <DrawerNavigation />
     );
   }

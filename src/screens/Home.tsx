@@ -44,7 +44,9 @@ export default class Home extends React.Component<State> {
             {name: item.away_team, code: item.away_code},
           ],
           schedule: item.datetime,
-          group: item.group
+          group: item.group,
+          stadium: item.stadium,
+          venue: item.venue
         }
       })
       
@@ -95,19 +97,18 @@ export default class Home extends React.Component<State> {
         <StatusBar backgroundColor={COLOR.BLACK} barStyle="light-content" />
 
         <View style={styles.header} >
-                <Text style={styles.headerTitle}> Schedule </Text>
-                
-                <Icon name="menu" size={DIMEN.HEADER_TITLE_ICON} color={COLOR.PRIMARY} style={{position: 'absolute', top: 15, left: 15}} onPress={()=>{this.props.navigation.navigate("Info")}} />
-                <Icon name="info" size={DIMEN.HEADER_TITLE_ICON} color={COLOR.PRIMARY} style={styles.headerInfoIcon} onPress={()=>{this.props.navigation.navigate("Info")}} />
+                <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around',}}>
+                  {/* <Icon name="menu" size={DIMEN.HEADER_TITLE_ICON} color={COLOR.PRIMARY} onPress={()=>{this.props.navigation.navigate("Info")}} /> */}
+                  <Text style={styles.headerTitle}> Schedule </Text>
+                  {/* <Icon name="info" size={DIMEN.HEADER_TITLE_ICON} color={COLOR.PRIMARY} onPress={()=>{this.props.navigation.navigate("Info")}} /> */}
+                </View>
                
                 <IconIonicons style={{alignSelf: 'center', marginTop: 10}} name="ios-football" color={COLOR.PRIMARY} size={100} />
                 <Text style={styles.headerTitleSecond}> FIFA 2018 </Text>
         </View>
 
         <View style={{flex: 2, padding: 20}}>
-                {/* <ScrollView showsVerticalScrollIndicator={false} > */}
                   { this.showContent() }
-                {/* </ScrollView> */}
         </View>
       </View>
     );

@@ -7,17 +7,30 @@ import DetailRoute from '../routes/DetailRoute'
 import Flag from 'react-native-flags'
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import AppContext from '../context/Context'
 
-export default class Detail extends React.Component<> {
+import services from '../services';
+
+export class Detail extends React.Component<> {
   constructor(props){
     super(props)
+    
+  }
+
+  async componentWillMount(){
+    await this.props.context.setGroupActive(this.props.navigation.getParam("group"))
+    await this.props.context.setMatchActive( this.props.navigation.state.params )
+    console.log(this.props.context)
+  }
+
+  async componentWillUnmount(){
+    await this.props.context.destroyGroupActive()
   }
 
   render() {
     const team = this.props.navigation.getParam("team"),
           group = this.props.navigation.getParam("group"),
           schedule = this.props.navigation.getParam("schedule");
-
 
     return (
       <View style={{flex:1, flexDirection: 'column'}}>
@@ -107,6 +120,21 @@ export default class Detail extends React.Component<> {
         </View>
       </View>
     );
+  }
+}
+
+
+export default class DetailWithContext extends React.Component<> {
+  constructor(props){
+    super(props)
+  }
+
+  render(){
+    return (
+      <AppContext.Consumer>
+        {context => <Detail {...this.props} context={context} />}
+      </AppContext.Consumer>
+    )
   }
 }
 

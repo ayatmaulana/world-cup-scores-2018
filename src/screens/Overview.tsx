@@ -12,16 +12,15 @@ import IconEntypo from 'react-native-vector-icons/Entypo'
 import PenaltyCard from '../components/PenaltyCard'
 import Spiner from '../components/Spiner'
 
+import AppContext from '../context/Context'
+
 
 interface State {
   isLoading: boolean
 }
 
 export default class Overview extends React.Component<State> {
-  static navigationOptions = {
-    tabBarIcon: ({tintColor}) => (<Icon name="list-ul" size={28} color={tintColor} />),
 
-  }
 
   constructor(props){
     super(props)
@@ -30,11 +29,14 @@ export default class Overview extends React.Component<State> {
     }
   }
 
-  componentDidMount(){
-    setTimeout(() => this.setState({isLoading: false}), 1000)
+  async componentDidMount(){
+    await this.setState({isLoading: false})
   }
 
   content() {
+
+    const { schedule, venue, stadium } = this.props.context.matchActive
+
     return (
       <View style={styles.container}>
         <View style={{marginTop: 5, marginBottom: 20, width: '30%', backgroundColor: COLOR.BLACK, padding: 5, borderTopRightRadius: 30, borderBottomRightRadius: 30, alignItems: 'center'}}>
@@ -45,13 +47,13 @@ export default class Overview extends React.Component<State> {
             <View style={{flex:1, flexDirection: 'row', justifyContent: "flex-start"}}>
               <IconEntypo name="calendar" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 20}} />
               <View>
-                  <Text style={{fontSize: 12, fontWeight: 'bold'}}> { this.props.navigation.getParam("schedule") } </Text>
+                  <Text style={{fontSize: 12, fontWeight: 'bold'}}> { schedule } </Text>
                   <Text style={{fontSize: 12}}>Start Date</Text>
               </View>
             </View>
             <View style={{flex:1, flexDirection: 'row'}}>
               <View style={{flex:1, flexDirection: 'row', justifyContent: "flex-start"}}>
-                <Icon name="balance-scale" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 20}} />
+                <Icon name="balance-scale" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 15}} />
                 <View>
                     <Text style={{fontSize: 12, fontWeight: 'bold'}}>Felix Byrich</Text>
                     <Text style={{fontSize: 12}}>Referee</Text>
@@ -79,9 +81,9 @@ export default class Overview extends React.Component<State> {
 
             <View style={{flex:1, flexDirection: 'row'}}>
               <View style={{flex:1, flexDirection: 'row', justifyContent: "flex-start"}}>
-                <Icon name="bank" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 20}} />
+                <Icon name="bank" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 15}} />
                 <View>
-                    <Text style={{fontSize: 12, fontWeight: 'bold'}}>Otkryt Arena</Text>
+                    <Text style={{fontSize: 12, fontWeight: 'bold', width: 120, flexWrap: 'wrap'}}>{stadium}</Text>
                     <Text style={{fontSize: 12}}>Stadium</Text>
                 </View>
               </View>
@@ -99,7 +101,7 @@ export default class Overview extends React.Component<State> {
             <View style={{flex:1, flexDirection: 'row', justifyContent: "flex-start"}}>
               <IconOcticons name="location" size={24} color={COLOR.BLACK} style={{marginRight: 20, marginLeft: 20}} />
               <View>
-                  <Text style={{fontSize: 12, fontWeight: 'bold'}}>Jakarta</Text>
+                  <Text style={{fontSize: 12, fontWeight: 'bold'}}>{ venue }</Text>
                   <Text style={{fontSize: 12}}>Location</Text>
               </View>
             </View>
@@ -146,3 +148,22 @@ const styles = StyleSheet.create({
   headerTitle: {color: COLOR.PRIMARY, fontSize: DIMEN.HEADER_TITLE, alignSelf: 'center' },
   headerInfoIcon: {alignSelf: 'flex-end', marginRight: 20, marginTop: 0, top: 50, right: 5, position: 'absolute'}
 });
+
+
+export default class OverviewWithContext extends React.Component<> {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor}) => (<Icon name="list-ul" size={28} color={tintColor} />),
+  }
+
+  constructor(props){
+    super(props)
+  }
+
+  render(){
+    return (
+      <AppContext.Consumer>
+        {context => <Overview {...this.props} context={context} />}
+      </AppContext.Consumer>
+    )
+  }
+}
