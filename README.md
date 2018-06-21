@@ -24,6 +24,8 @@ react-native run-ios
 
 ## :camera: Screenshots
 
-| ![screenshot_1](https://i.imgur.com/eX1hkUm.jpg =x450) | ![screenshot_2](https://i.imgur.com/1VyTmaJ.jpg =x450) |
-| ![screenshot_3](https://i.imgur.com/omwfuMJ.jpg =x450) | ![screenshot_4](https://i.imgur.com/1u5JKnZ.jpg =x450) |
---
+|    |    |
+---- | ----
+![screenshot_1](https://i.imgur.com/eX1hkUm.jpg =x450) |  ![screenshot_2](https://i.imgur.com/1VyTmaJ.jpg =x450) 
+![screenshot_3](https://i.imgur.com/omwfuMJ.jpg =x450) | ![screenshot_4](https://i.imgur.com/1u5JKnZ.jpg =x450)
+
