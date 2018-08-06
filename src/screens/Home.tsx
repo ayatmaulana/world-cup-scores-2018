@@ -4,10 +4,11 @@ import Icon from 'react-native-vector-icons/Feather';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import * as COLOR from  '../styles/colors';
 import * as DIMEN from  '../styles/dimens';
-import Axios from 'axios'
 
 import HomeItem from '../components/HomeItem'
 import Spiner from '../components/Spiner'
+
+import Service from '../services'
 
 interface State {
   isLoading: boolean,
@@ -35,9 +36,9 @@ export default class Home extends React.Component<State> {
 
   _fetchData = async () => {
     try{
-      const getData: any = await Axios("http://fifa.ayatmaulana.com/main")
+      const getData: any = await Service.main()
       
-      const data: any = getData.data.data.map(item => {
+      const data: any = getData.map(item => {
         return {
           team: [
             {name: item.home_team, code: item.home_code},
